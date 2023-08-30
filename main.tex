@@ -1,0 +1,219 @@
+\documentclass[12pt,twoside]{report}
+
+\usepackage{a4wide}
+\usepackage{graphicx}
+\usepackage{natbib}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{pdfpages}
+\usepackage{url}
+
+%\usepackage[top=3cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry} %Edges of the pages
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage[normalem]{ulem}
+\usepackage{float} %Doesn't break figures and Places the float at precisely the location in the LaTeX code
+\usepackage{morefloats}
+\usepackage{wrapfig} %Writes text surrounding the figure
+\usepackage{caption} %Only centre one line captions
+\usepackage{subcaption}
+\usepackage{IEEEtrantools}
+%\usepackage[authoryear,round]{natbib}
+\usepackage[titletoc,title]{appendix}
+\usepackage{tikz,pgfplots}
+%\usetikzlibrary{external}
+%\tikzexternalize % activate!
+% tikz after this are recompiled, put in document before tikzpicture:
+%\tikzset{external/force remake} % all following images
+%\tikzset{external/remake next} % only next image
+\usepackage{siunitx}
+\usepackage{textgreek}
+\usepackage{listings}
+\usepackage{longtable}
+\usepackage{array}\setlength{\extrarowheight}{4pt}
+\usetikzlibrary{arrows}
+\usetikzlibrary{trees}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.markings}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+%\renewcommand{\theenumi}{\alph{enumi}}
+%\renewcommand{\labelenumi}{\theenumi)}
+
+\usepackage{hyperref}
+\hypersetup{
+colorlinks = true,
+linkcolor = black,
+filecolor = magenta,
+urlcolor = magenta,
+citecolor = blue
+}
+
+\title{Licentiate thesis - Main document}
+\author{Student name}
+
+
+% tikz feynman styles
+\tikzset{
+photon/.style={decorate, decoration={snake}, draw=black},
+particle/.style={draw=black, postaction={decorate},
+    decoration={markings,mark=at position .5 with {\arrow[draw=black]{>}}}},
+antiparticle/.style={draw=black, postaction={decorate},
+    decoration={markings,mark=at position .5 with {\arrow[draw=black]{<}}}},
+gluon/.style={decorate, draw=black,
+    decoration={coil,amplitude=4pt, segment length=5pt}}
+}
+\pgfplotsset{compat=1.12}
+
+% stuff from thesis template
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE]{\leftmark}
+\fancyhead[RO]{\rightmark}
+%\rhead{}
+%\chead{}
+%\lhead{}
+%\rfoot{}
+\cfoot{\thepage}
+%\lfoot{}
+\setlength{\headheight}{14.5pt}
+
+\newcommand{\apj}{ApJ}
+\newcommand{\apjl}{ApJ}
+\newcommand{\apjs}{ApJ}
+\newcommand{\mnras}{MNRAS}
+\newcommand{\aap}{A\&A}
+\newcommand{\aj}{AJ}
+\newcommand{\nat}{Nature}
+\newcommand{\pre}{Phys.~Rev.~E}
+\newcommand{\araa}{ARA\&A}
+\newcommand{\icarus}{Icarus}
+\newcommand{\physrep}{Phys.~Rep.}
+\newcommand{\physscr}{Phys.~Scripta}
+\newcommand{\pasp}{PASP}
+\newcommand{\aaps}{A\&AS}
+\newcommand{\actaa}{Acta Astron.}
+\newcommand{\memsai}{Mem.~Soc.~Astron.~Italiana}
+\newcommand{\na}{New A}
+\newcommand{\procspie}{Proceedings of the SPIE}
+\newcommand{\ssr}{Space Science Reviews}
+
+\newcommand{\abund}[2]{[\textrm{#1}/\textrm{#2}]}
+
+% upper case Roman numerals
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+% set up listings for matlab
+%\lstset{ %
+%language=Matlab,
+%morekeywords={*,cell,sortrows,sind,cosd,quantile,display},
+%deletekeywords={gamma,diff}
+%}
+
+
+% tex code to manually control spacing in figure and table contents
+%\makeatletter
+%\def\@chapter[#1]#2{\addtocontents{toc}{\protect\addvspace{-1\p@}}%
+%                    \ifnum \c@secnumdepth >\m@ne
+%                      \refstepcounter{chapter}%
+%                      \typeout{\@chapapp\space\thechapter.}%
+%                      \addcontentsline{toc}{chapter}%
+%                                 {\protect\numberline{\thechapter}#1}%
+%                    \else
+%                      \addcontentsline{toc}{chapter}{#1}%
+%                    \fi
+%                    \chaptermark{#1}%
+%                    \addtocontents{lof}{\protect\addvspace{4\p@}}%
+%                    \addtocontents{lot}{\protect\addvspace{4\p@}}%
+%                    \if@twocolumn
+%                      \@topnewpage[\@makechapterhead{#2}]%
+%                    \else
+%                      \@makechapterhead{#2}%
+%                      \@afterheading
+%                    \fi}
+%\makeatother
+
+\begin{document}
+
+%%%%% Official front page
+%\includepdf[pages={1,2}]{myFrontPage.pdf}
+
+% temporary frontpage until you have an official one
+\begin{center}
+\textsc{\LARGE Lund University}\\[1.5cm]
+\HRule \\[0.8cm]{ \huge \bfseries The title\\
+[0.4cm]of your\\
+[0.4cm]Licentiate thesis}\\
+[0.8cm]{ \huge \bfseries The subtitle \\
+[0.15cm] of your \\
+[0.27cm] Licentiate thesis}\\
+[0.8cm]\HRule \\[0.4cm]
+\vskip0.8cm
+
+\begin{minipage}{0.8\textwidth}
+\large
+\emph{Author: \qquad \qquad \qquad \qquad \qquad  Supervisors:}\\
+Student name \qquad \qquad \quad \quad Supervisor 1 \& Supervisor 2
+\end{minipage}
+
+\vfill
+\large\today
+\thispagestyle{empty}
+\end{center}
+
+\newpage
+\thispagestyle{empty}
+\mbox{} % this is how we create an empty page in LaTeX
+%%%%% end of temporary 2 front pages
+
+
+%%%%% Summary page
+\include{text/summary}
+
+
+%%%%% Empty page
+\newpage
+\thispagestyle{empty}
+\mbox{} % make sure that TOC starts on a right page
+
+
+%%%%% Table of contents
+\newpage
+\setcounter{page}{1} % start counting pages
+\tableofcontents
+
+
+%%%%% Introduction
+\include{text/intro}
+
+%%%%% Stellar sample + Spectroscopy
+\include{text/methodology}
+
+%%%%% Results
+\include{text/results}
+
+%%%%% The future
+\include{text/thefuture}
+
+
+
+%%%%% Bibliography
+\bibliographystyle{aa.bst}
+\bibliography{references}
+
+
+%%%%% Appendixes
+\begin{appendix}
+
+%%%%% Line list changes
+
+\include{app_thepaper}
+\includepdf[pages={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15}]{yourPaper.pdf}
+
+\end{appendix}
+
+\end{document}
