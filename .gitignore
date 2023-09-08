@@ -1,0 +1,6 @@
+# Files generated when compiling LaTeX
+*aux
+*.log
+*.toc
+*.out
+
